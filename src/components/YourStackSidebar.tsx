@@ -35,6 +35,7 @@ export function YourStackSidebar({ selectedStack, onRemove, onRemoveAll }: YourS
             className="mt-5 w-full rounded-lg border border-destructive/40 py-2.5 text-sm font-semibold text-destructive transition-colors hover:bg-destructive/5"
           >
             Remove All
+            
           </button>
         </>
       )}
