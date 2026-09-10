@@ -1,16 +1,12 @@
-
 import { useEffect, useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Footer } from "@/components/Footer";
 import { HeroBanner } from "@/components/HeroBanner";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { MobileNavbar, Navbar } from "@/components/Navbar";
 import { TechGrid } from "@/components/TechGrid";
-
-
-import { Toast, type ToastMessage } from "@/components/Toast";
-
-
 import { YourStackSidebar } from "@/components/YourStackSidebar";
 import { getTechnologies } from "@/data/technologies";
 import type { Technology } from "@/types/tech";
@@ -21,7 +17,6 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
-  const [toastMessage, setToastMessage] = useState<ToastMessage | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,29 +33,21 @@ export default function App() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!toastMessage) return;
-    const timer = setTimeout(() => setToastMessage(null), 2800);
-    return () => clearTimeout(timer);
-  }, [toastMessage]);
-
-  const showToast = (message: string, type: ToastMessage["type"]) =>
-    setToastMessage({ id: Date.now(), message, type });
   const handleAdd = (tech: Technology) => {
     if (selectedStack.some((item) => item.id === tech.id)) {
-      showToast(`${tech.name} is already in your stack!`, "warning");
+      toast.warning(`${tech.name} is already in your stack!`);
       return;
     }
     setSelectedStack((previous) => [...previous, tech]);
-    showToast(`Added ${tech.name} to your stack!`, "success");
+    toast.success(`Added ${tech.name} to your stack!`);
   };
   const handleRemove = (tech: Technology) => {
     setSelectedStack((previous) => previous.filter((item) => item.id !== tech.id));
-    showToast(`Removed ${tech.name} from your stack.`, "info");
+    toast.info(`Removed ${tech.name} from your stack.`);
   };
   const handleRemoveAll = () => {
     setSelectedStack([]);
-    showToast("Cleared all technologies from your stack.", "warning");
+    toast.warning("Cleared all technologies from your stack.");
   };
 
   return (
@@ -79,7 +66,7 @@ export default function App() {
         </section>
       </main>
       <Footer />
-      {toastMessage && <Toast toast={toastMessage} onClose={() => setToastMessage(null)} />}
+      <ToastContainer position="bottom-right" autoClose={2800} />
     </div>
   );
 }
