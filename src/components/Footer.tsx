@@ -14,6 +14,8 @@ export function Footer() {
       <div className="mx-auto w-full max-w-7xl px-6 py-14 md:px-8">
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
+
+            
            <img src={logoAsset} alt="Dev Stack" className="h-6" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Curated tools, technologies, and resources for developers building modern software.
