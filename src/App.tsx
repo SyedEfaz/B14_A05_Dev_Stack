@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 
 import { Footer } from "@/components/Footer";
@@ -5,7 +6,11 @@ import { HeroBanner } from "@/components/HeroBanner";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { MobileNavbar, Navbar } from "@/components/Navbar";
 import { TechGrid } from "@/components/TechGrid";
+
+
 import { Toast, type ToastMessage } from "@/components/Toast";
+
+
 import { YourStackSidebar } from "@/components/YourStackSidebar";
 import { getTechnologies } from "@/data/technologies";
 import type { Technology } from "@/types/tech";
